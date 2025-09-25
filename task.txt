@@ -1,0 +1,8 @@
+
+GET /users => HTML Document Render
+GET /api/users => List all users JSON 
+
+GET /api/users/1 => Get the user with id 1
+
+Dynamic path parameters
+/api/users/:id
