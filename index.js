@@ -21,13 +21,30 @@ app.get('/api/users', (req, res) => {
 });
 
 // To access the users dynamically
-app.get("/api/users/:id", (req, res) => {
+// app.get("/api/users/:id", (req, res) => {
 
-    const id = Number(req.params.id);
-    const user = users.find((user) =>  user.id === id);
+//     const id = Number(req.params.id);
+//     const user = users.find((user) =>  user.id === id);
 
-    res.json(user);
-})
+//     res.json(user);
+// })
+
+
+app 
+   .route("/api/users/:id")
+   .get((req, res) => {
+
+      const id = Number(req.params.id);
+      const user = users.find((user) => user.id === id);
+
+      return res.json(user);
+   })
+   .patch((req, res) => {
+    return res.json({status : "Pending"});
+   })
+   .delete((req, res) => {
+    return res.json({status : "Pending"});
+   })
 
 // create a new user
 app.post("/api/users", (req, res) => {
@@ -35,14 +52,14 @@ app.post("/api/users", (req, res) => {
 })
 
 // edit the user with user id
-app.patch("/api/users/:id", (req, res) => {
-    return res.json({status: 'Pending'});
-})
+// app.patch("/api/users/:id", (req, res) => {
+//     return res.json({status: 'Pending'});
+// })
 
 // Delete the user with the user id
-app.delete("/api/users/:id", (req, res) => {
-    return res.json({status : "Pending"});
-})
+// app.delete("/api/users/:id", (req, res) => {
+//     return res.json({status : "Pending"});
+// })
 
 
 
