@@ -1,8 +1,12 @@
 const express = require('express');
 const users = require('./MOCK_DATA.json');
+const fs = require('fs');
 
 const app = express();
 const PORT = 8000;
+
+// Middleware or PlugIn
+app.use(express.urlencoded({ extended: false}));
 
 // ROUTES
 app.get('/users',(req, res) => {
@@ -48,7 +52,15 @@ app
 
 // create a new user
 app.post("/api/users", (req, res) => {
-    return res.json({status: "Pending"});
+    const body = req.body;
+    // console.log("Body", body);
+
+    users.push({...body, id:users.length + 1});
+
+    fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err, data) => {
+        return res.json({ status: "success", id:users.length });
+    })
+    
 })
 
 // edit the user with user id
